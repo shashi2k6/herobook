@@ -1,8 +1,9 @@
 # Hero Book :
 
-API Specifications
+### `API Specifications`
 
-Resource Summary
+`Resource Summary`
+
 
 |   URI         |   HTTP method |    HTTP status    |   Description |
 | ------------- | ------------- |  ---------------  | ------------- |           
