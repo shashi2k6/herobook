@@ -30,7 +30,7 @@ class HeroBookApplicationTests {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/hero"))
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.*", hasSize(1)));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.*", hasSize(0)));
 
     }
 
