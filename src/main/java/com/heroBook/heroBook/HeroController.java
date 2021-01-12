@@ -11,10 +11,12 @@ import java.util.List;
 @RestController
 public class HeroController {
 
+
+
     @GetMapping("/api/hero")
-    public ResponseEntity<List<Hero>> getAllHeores(){
+    public List<Hero> getAllHeores(){
         List<Hero> heroList = new ArrayList<Hero>();
         heroList.add(new Hero("Superman"));
-        return new ResponseEntity<List<Hero>>(heroList, HttpStatus.OK);
+        return heroList;
     }
 }
