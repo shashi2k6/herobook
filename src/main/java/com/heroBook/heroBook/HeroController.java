@@ -1,5 +1,6 @@
 package com.heroBook.heroBook;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,11 +13,11 @@ import java.util.List;
 public class HeroController {
 
 
+    @Autowired
+    private HeroService heroService;
 
     @GetMapping("/api/hero")
     public List<Hero> getAllHeores(){
-        List<Hero> heroList = new ArrayList<Hero>();
-        heroList.add(new Hero("Superman"));
-        return heroList;
+        return heroService.getAllHeroes();
     }
 }

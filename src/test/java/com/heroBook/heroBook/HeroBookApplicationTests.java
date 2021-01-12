@@ -10,8 +10,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
@@ -19,19 +19,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 class HeroBookApplicationTests {
 
-	@Autowired
-	private MockMvc mockMvc;
+    @Autowired
+    ObjectMapper objectMapper;
 
-	@Autowired
-	ObjectMapper objectMapper;
+    @Autowired
+    private MockMvc mockMvc;
 
-	@Test
-	void testToGetAllHeroes() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/hero"))
-				.andExpect(status().isOk())
-				.andDo(print())
-				.andExpect(MockMvcResultMatchers.jsonPath("$[0].hero").value("Superman"));
+    @Test
+    void testToGetAllHeroes() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/hero"))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.*", hasSize(1)));
 
-	}
+    }
 
 }
