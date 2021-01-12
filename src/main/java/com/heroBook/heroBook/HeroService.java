@@ -15,4 +15,8 @@ public class HeroService {
     public List<Hero> getAllHeroes(){
         return heroRepository.findAll();
     }
+
+    public Hero addHero(Hero hero) {
+        return heroRepository.save(hero);
+    }
 }

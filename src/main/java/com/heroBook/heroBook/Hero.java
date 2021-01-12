@@ -2,14 +2,22 @@ package com.heroBook.heroBook;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Hero {
 
-    @Id
-    @GeneratedValue
-    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Id @GeneratedValue(strategy= GenerationType.AUTO) int id;
 
     private String image;
 
@@ -32,6 +40,9 @@ public class Hero {
     private String description;
 
     private String story;
+
+    public Hero() {
+    }
 
     public Hero(String heroName) {
         this.heroName = heroName;
