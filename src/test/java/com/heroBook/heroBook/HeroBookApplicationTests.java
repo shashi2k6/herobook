@@ -17,13 +17,11 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
 @SpringBootTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class HeroBookApplicationTests {
 
     @Autowired
@@ -32,12 +30,27 @@ public class HeroBookApplicationTests {
     @Autowired
     private MockMvc mockMvc;
 
+
+    /**
+     * Test to check if hero is empty.
+     * @throws Exception
+     */
+
+    @Test
+    void testToGetEmptyHero() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/hero"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.*",hasSize(0)));
+    }
+
+
+
+
     /**
      * Test to get all the heroes.
      * @throws Exception
      */
     @Test
-    @Order(2)
     void testToGetAllHeroes() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/hero"))
                 .andExpect(status().isOk())
@@ -47,11 +60,10 @@ public class HeroBookApplicationTests {
     }
 
     /**
-     * Test to all the hero.
+     * Test to add the hero.
      * @throws Exception
      */
     @Test
-    @Order(1)
     void testAddHero() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.post("/api/hero")
                 .content(objectMapper.writeValueAsString(new Hero("Spiderman")))
@@ -61,7 +73,6 @@ public class HeroBookApplicationTests {
     }
 
     @Test
-    @Order(2)
     public void testToGetHeroByName() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/api/heroByName").param("heroName", "Spiderman"))
                 .andExpect(status().isOk())
