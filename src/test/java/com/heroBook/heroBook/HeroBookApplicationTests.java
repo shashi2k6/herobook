@@ -65,8 +65,8 @@ public class HeroBookApplicationTests {
     public void testToGetHeroByName() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/api/heroByName").param("heroName", "Spiderman"))
                 .andExpect(status().isOk())
-                //.andExpect(model().attribute("heroName", is("Spiderman")))
-                .andDo(print());
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.jsonPath("$[*].heroName").value("Spiderman"));
     }
 
 }
