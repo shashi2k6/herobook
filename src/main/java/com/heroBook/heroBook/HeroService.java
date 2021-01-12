@@ -22,11 +22,9 @@ public class HeroService {
     }
 
     public List<Hero> getHeroByName(String heroName) {
-        List<Hero> heroList = getAllHeroes();
-        List<Hero> heroByNameList = heroList
+        return getAllHeroes()
                 .stream()
                 .filter(hero -> hero.getHeroName().equals(heroName))
                 .collect(Collectors.toList());
-        return heroByNameList;
     }
 }
