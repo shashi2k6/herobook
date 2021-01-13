@@ -41,7 +41,7 @@ public class VillainApplicationTests {
      * @throws Exception
      */
     @Test
-    void testToGetAllHeroes() throws Exception {
+    void testToGetAllVillains() throws Exception {
         initVillain();
         mockMvc.perform(MockMvcRequestBuilders.get("/api/villain"))
                 .andExpect(status().isOk())

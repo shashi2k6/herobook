@@ -3,15 +3,13 @@ package com.heroBook.heroBook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class HeroService {
 
     @Autowired
-    private HeroRepository heroRepository;
+    private GCRepository heroRepository;
 
     public List<Hero> getAllHeroes(){
         return heroRepository.findAll();
@@ -23,11 +21,6 @@ public class HeroService {
 
     public Hero getHeroByName(String heroName) {
         return heroRepository.findByHeroName(heroName);
-
-        /*return getAllHeroes()
-                .stream()
-                .filter(hero -> hero.getHeroName().equals(heroName))
-                .collect(Collectors.toList());*/
     }
 
     public void cleanUpDB() {
