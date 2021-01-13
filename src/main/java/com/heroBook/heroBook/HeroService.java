@@ -21,11 +21,13 @@ public class HeroService {
         return heroRepository.save(hero);
     }
 
-    public List<Hero> getHeroByName(String heroName) {
-        return getAllHeroes()
+    public Hero getHeroByName(String heroName) {
+        return heroRepository.findByHeroName(heroName);
+
+        /*return getAllHeroes()
                 .stream()
                 .filter(hero -> hero.getHeroName().equals(heroName))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());*/
     }
 
     public void cleanUpDB() {

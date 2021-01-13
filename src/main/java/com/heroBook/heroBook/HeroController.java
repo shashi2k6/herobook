@@ -27,13 +27,12 @@ public class HeroController {
     }
 
     @GetMapping("/api/heroByName")
-    public List<?> getHeroByName(@RequestParam String heroName) throws Exception {
-        List<Hero> heroList = heroService.getHeroByName(heroName);
-        if(heroList.size()>0) {
-            return heroList;
-        }else {
-            return Arrays.asList("Hero doesn't exist");
-        }
+    public ResponseEntity getHeroByName(@RequestParam String heroName) throws Exception {
+        Hero hero = heroService.getHeroByName(heroName);
+        if(hero!=null)
+            return new ResponseEntity(hero, HttpStatus.OK);
+        else
+            return new ResponseEntity("Hero doesn't exist", HttpStatus.OK);
     }
 
     @DeleteMapping("/api/cleanup")

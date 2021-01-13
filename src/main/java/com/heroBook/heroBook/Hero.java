@@ -48,6 +48,20 @@ public class Hero {
         this.heroName = heroName;
     }
 
+    public Hero(String image, String heroName, String height, String weight, String specialPower, String intelligence, String strength, String speed, String agility, String description, String story) {
+        this.image = image;
+        this.heroName = heroName;
+        this.height = height;
+        this.weight = weight;
+        this.specialPower = specialPower;
+        this.intelligence = intelligence;
+        this.strength = strength;
+        this.speed = speed;
+        this.agility = agility;
+        this.description = description;
+        this.story = story;
+    }
+
     public String getImage() {
         return image;
     }
