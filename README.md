@@ -1,5 +1,7 @@
 # Hero Book :
 
+URL ref:  https://www.restapitutorial.com/lessons/httpmethods.html
+
 ### `API Specifications`
 
 `Resource Summary`
@@ -12,6 +14,7 @@
 | gc.com/api/hero | GET  |         200 OK          |       Return a list of heroes in the database        |  
 | gc.com/api/heroByName | GET  |         200 OK          |       Get the hero by name         |  
 | gc.com/api/heroByName | GET  |         200 OK          |       Hero not found in the database        |  
+
 
 
 

@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
 @SpringBootTest
-@Transactional
+//@Transactional
 public class HeroBookApplicationTests {
 
     @Autowired
@@ -102,7 +102,8 @@ public class HeroBookApplicationTests {
      * To clean up all the datasource
      */
     @AfterEach
-    void tearDown() {
-        System.out.println("Tear down method called.");
+    void tearDown() throws Exception {
+        //System.out.println("Tear down method called.");
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/cleanup")).andExpect(status().isOk());
     }
 }

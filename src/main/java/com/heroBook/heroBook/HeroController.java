@@ -36,4 +36,9 @@ public class HeroController {
         }
     }
 
+    @DeleteMapping("/api/cleanup")
+    public void cleanUpDB(){
+         heroService.cleanUpDB();
+    }
+
 }

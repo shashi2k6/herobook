@@ -27,4 +27,8 @@ public class HeroService {
                 .filter(hero -> hero.getHeroName().equals(heroName))
                 .collect(Collectors.toList());
     }
+
+    public void cleanUpDB() {
+        heroRepository.deleteAll();
+    }
 }
