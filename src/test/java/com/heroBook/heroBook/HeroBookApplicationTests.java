@@ -94,7 +94,7 @@ public class HeroBookApplicationTests {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/heroByName").param("heroName", "Spiderman"))
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(status().isInternalServerError());
+                .andExpect(MockMvcResultMatchers.jsonPath("$").value("Hero doesn't exist"));
     }
 
 }
