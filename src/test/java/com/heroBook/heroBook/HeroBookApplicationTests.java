@@ -1,20 +1,19 @@
 package com.heroBook.heroBook;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.event.annotation.BeforeTestMethod;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
+import javax.transaction.Transactional;
+
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -22,6 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
 @SpringBootTest
+@Transactional
 public class HeroBookApplicationTests {
 
     @Autowired
@@ -30,12 +30,16 @@ public class HeroBookApplicationTests {
     @Autowired
     private MockMvc mockMvc;
 
+    void initHero() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/hero")
+                .content(objectMapper.writeValueAsString(new Hero("Spiderman")))
+                .contentType(MediaType.APPLICATION_JSON));
+    }
 
     /**
      * Test to check if hero is empty.
      * @throws Exception
      */
-
     @Test
     void testToGetEmptyHero() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/hero"))
@@ -43,8 +47,18 @@ public class HeroBookApplicationTests {
                 .andExpect(jsonPath("$.*",hasSize(0)));
     }
 
-
-
+    /**
+     * Test to add a Hero.
+     * @throws Exception
+     */
+    @Test
+    void testAddHero() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/hero")
+                .content(objectMapper.writeValueAsString(new Hero("Spiderman")))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
+    }
 
     /**
      * Test to get all the heroes.
@@ -52,6 +66,7 @@ public class HeroBookApplicationTests {
      */
     @Test
     void testToGetAllHeroes() throws Exception {
+        initHero();
         mockMvc.perform(MockMvcRequestBuilders.get("/api/hero"))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -60,21 +75,13 @@ public class HeroBookApplicationTests {
     }
 
     /**
-     * Test to add the hero.
+     * Test to get Hero by Name.
      * @throws Exception
      */
     @Test
-    void testAddHero() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/hero")
-                .content(objectMapper.writeValueAsString(new Hero("Spiderman")))
-                .contentType(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
-    }
-
-    @Test
     public void testToGetHeroByName() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/heroByName").param("heroName", "Spiderman"))
+        initHero();
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/heroByName").param("heroName", "Spiderman"))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.jsonPath("$[*].heroName").value("Spiderman"));
