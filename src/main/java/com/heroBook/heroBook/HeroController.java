@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -28,13 +29,10 @@ public class HeroController {
     @GetMapping("/api/heroByName")
     public List<?> getHeroByName(@RequestParam String heroName) throws Exception {
         List<Hero> heroList = heroService.getHeroByName(heroName);
-
         if(heroList.size()>0) {
             return heroList;
         }else {
-            List list = new ArrayList();
-            list.add("Hero doesn't exist");
-            return list;
+            return Arrays.asList("Hero doesn't exist");
         }
     }
 
