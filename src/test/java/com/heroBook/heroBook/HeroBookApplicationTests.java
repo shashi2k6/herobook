@@ -97,4 +97,12 @@ public class HeroBookApplicationTests {
                 .andExpect(MockMvcResultMatchers.jsonPath("$").value("Hero doesn't exist"));
     }
 
+
+    /**
+     * To clean up all the datasource
+     */
+    @AfterEach
+    void tearDown() {
+        System.out.println("Tear down method called.");
+    }
 }

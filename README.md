@@ -14,3 +14,4 @@
 | gc.com/api/heroByName | GET  |         200 OK          |       Hero not found in the database        |  
 
 
+
