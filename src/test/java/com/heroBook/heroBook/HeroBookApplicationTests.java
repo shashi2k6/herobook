@@ -28,6 +28,10 @@ public class HeroBookApplicationTests {
     @Autowired
     private MockMvc mockMvc;
 
+    /**
+     * To create the dummy hero object for the testing purpose.
+     * @throws Exception
+     */
     void initHero() throws Exception {
         Hero hero = new Hero("ImagePath","Spiderman","6 feet 30 inches","70 kg","Webs & Strings","Fast thinker","Webs & Flexible","200 km/hour","Very fast","Spiderman - Super Hero saves the world","SuperHero saves the city from all the villians");
         mockMvc.perform(MockMvcRequestBuilders.post("/api/hero")
@@ -98,6 +102,10 @@ public class HeroBookApplicationTests {
     }
 
 
+    /**
+     * Test to to check user not found in the repository
+     * @throws Exception
+     */
     @Test
     public void testHeroNotFound() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/heroByName").param("heroName", "Spiderman"))
