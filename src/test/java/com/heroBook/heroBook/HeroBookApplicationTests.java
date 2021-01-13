@@ -1,6 +1,7 @@
 package com.heroBook.heroBook;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.dom4j.util.StringUtils;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -85,6 +86,15 @@ public class HeroBookApplicationTests {
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.jsonPath("$[*].heroName").value("Spiderman"));
+    }
+
+
+    @Test
+    public void testHeroNotFound() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/heroByName").param("heroName", "Spiderman"))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(status().isInternalServerError());
     }
 
 }

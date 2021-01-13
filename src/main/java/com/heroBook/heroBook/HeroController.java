@@ -26,8 +26,13 @@ public class HeroController {
     }
 
     @GetMapping("/api/heroByName")
-    public List<Hero> getHeroByName(@RequestParam String heroName){
-        return heroService.getHeroByName(heroName);
+    public List<Hero> getHeroByName(@RequestParam String heroName) throws Exception {
+        List<Hero> heroList = heroService.getHeroByName(heroName);
+
+        if(heroList.size()>0)
+            return heroList;
+        else
+            throw new Exception("Hero doesn't exist");
     }
 
 }
