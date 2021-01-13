@@ -98,6 +98,10 @@ public class HeroBookApplicationTests {
     }
 
 
+    /**
+     * Test to to check user not found in the repository
+     * @throws Exception
+     */
     @Test
     public void testHeroNotFound() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/heroByName").param("heroName", "Spiderman"))
