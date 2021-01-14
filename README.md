@@ -1,54 +1,201 @@
-# Hero Book :
+###**Herobook**
 
-URL ref:  https://www.restapitutorial.com/lessons/httpmethods.html
+GC publishing wants to develop a new application for fans to browse all the heroes 
+and villains from the comics.
 
-### `API Specifications`
+### **Acceptance Criteria**
+**Visitors**
 
-`Resource Summary`
+As a visitor, I can view all the heroes.
+````
+When I view all the heros
+Then I can see names of all heros
+````
+As a visitor, I can see information about any individual hero so that I can see their stats.
 
-## <u>Test case 1:</u>
+````
+Rule: Heroes have an image, real name, hero name, height, weight, special power, intelligence, strength, power, speed, agility, description, and story.
 
-|   URI         |   HTTP method |    HTTP status    |   Description |
-| ------------- | ------------- |  ---------------  | ------------- |           
-| gc.com/api/hero | GET  |         200 OK          |       Test to get the empty hero - no hero in database       |           
+Given I have the name of a hero
+When I retreive the hero
+Then I can view all the details for that hero
 
-`Request :`
+Given I have an incorrect hero name
+When I retreive details for that hero
+Then I receive a message that it doesn't exist
+````
 
- - HTTP Method = GET
- - Request URI = /api/hero
+### **Technical Specification**
 
-`Response :`
-- Body = []
+| URI                             | Method | Description                                          |
+|---------------------------------|--------|------------------------------------------------------|
+|/api/hero                        |GET     | Get a list of all the Heroes                         |
+|/api/heroByName/{hero_name}      |GET     | Get the details of the single hero                   |
+|/api/hero                        |POST    | Add a new hero                                       |
 
-## <u>Test case 2:</u>
+### **Sample Request and Response**
 
-|   URI         |   HTTP method |    HTTP status    |   Description |
-| ------------- | ------------- |  ---------------  | ------------- |
-| gc.com/api/hero | POST  |         200 OK          |       Add the hero to the Database        |  
+GET /api/hero
+````
+[
+    {
+       "heroName" : "Spiderman"
+    },
+    {
+       "heroName": "Batman"
+    }
+]
+````
 
-`Request :`
+GET /api/heroByName/Spiderman
+````
+{
+    "id" : "1",
+    "heroName" : "Spiderman",
+	"imagePath" : "imageUrl",
+	"height"  : "6 feet",
+	"weight"  : "50 kg",
+	"specialPower" : "can fly",
+	"intelligence" : "web",
+	"strength"       : "Web & Fly",
+	"speed" : "100km/h",
+	"agility":"Very fast",
+	"description":"saves world from villains",
+	"story":"Spider man"
+}
+````
 
-- HTTP Method = GET
-- Request URI = /api/hero
+POST /api/hero
+````
+Request:
+{
+    "heroName" : "Spiderman",
+	"imagePath" : "imageUrl",
+	"height"  : "6 feet",
+	"weight"  : "50 kg",
+	"specialPower" : "can fly",
+	"intelligence" : "web",
+	"strength"       : "Web & Fly",
+	"speed" : "100km/h",
+	"agility":"Very fast",
+	"description":"saves world from villains",
+	"story":"Spider man"
+}
+````
 
-`Response :`
--  Body = {"id":1,"image":"ImageName","heroName":"Andrew Garfield","height":"6 feet 30 inches","weight":"70 kg","specialPower":"Webs & Strings","intelligence":"Fast thinker","strength":"Webs & Flexible","speed":"200 km/hour","agility":"Very fast","description":"Spiderman - Super Hero saves the world","story":"SuperHero saves the city from all the villians"}
-
-## <u>Test case 3:</u>
-
-|   URI         |   HTTP method |    HTTP status    |   Description |
-| ------------- | ------------- |  ---------------  | ------------- |
-| gc.com/api/herobyname | GET |         200 OK          |       Add the hero to the Database        |  
-
-`Request :`
-
-- HTTP Method = GET
-- Request URI = /api/herobyname
-- Parameters = {heroName=[Andrew Garfield]}
-
-`Response :`
--  Body = {"id":1,"image":"ImageName","heroName":"Andrew Garfield","height":"6 feet 30 inches","weight":"70 kg","specialPower":"Webs & Strings","intelligence":"Fast thinker","strength":"Webs & Flexible","speed":"200 km/hour","agility":"Very fast","description":"Spiderman - Super Hero saves the world","story":"SuperHero saves the city from all the villians"}
-
-
+````
+Response:
+{
+    "id" : "1",
+   "heroName" : "Spiderman",
+	"imagePath" : "imageUrl",
+	"height"  : "6 feet",
+	"weight"  : "50 kg",
+	"specialPower" : "can fly",
+	"intelligence" : "web",
+	"strength"       : "Web & Fly",
+	"speed" : "100km/h",
+	"agility":"Very fast",
+	"description":"saves world from villains",
+	"story":"Spider man"
+}
+````
 
 
+#### **Stories and Acceptance Criteria**
+As a visitor, I can view all the villains.
+````
+When I view all the villains
+Then I can see names of all villains
+````
+
+As a visitor, I can see information about any individual hero so that I can see their stats.
+
+````
+Rule: Villains have an arch rival, image, real name, hero name, height, weight, special power, intelligence, strength, power, speed, agility, description, and story.
+
+Given I have the name of a villain
+When I retreive the villain
+Then I can view all the details for that villain
+
+Given I have an incorrect villain name
+When I retreive details for that villain
+Then I receive a message that it doesn't exist
+````
+
+
+### **Technical Specification**
+
+| URI                             | Method | Description                                          |
+|---------------------------------|--------|------------------------------------------------------|
+|/api/villain                     |GET     | Get a list of all the Villain                        |
+|/api/villainByName/{villain_name}|GET     | Get the details of the single villain                |
+|/api/villain                     |POST    | Add a new villain                                    |
+
+### **Sample Request and Response**
+
+GET /api/villain
+````
+[
+    {
+       "villainName" : "Joker"
+    },
+    {
+       "villainName":  "catWomen"
+    }
+]
+````
+
+GET /api/villainByName/{villain_name}
+````
+{
+    "id" : "1",
+    "villainName" : "Jokerman",
+	"imagePath" : "imageUrl",
+	"height"  : "6 feet",
+	"weight"  : "50 kg",
+	"specialPower" : "can manipulate others",
+	"intelligence" : "convincing power",
+	"strength"       : "can fight",
+	"speed" : "100km/h",
+	"agility":"Very fast",
+	"description":"trouble the world",
+	"story":"Joker"
+}
+````
+
+POST /api/villain
+````
+Request:
+{
+    "villainName" : "Jokerman",
+	"imagePath" : "imageUrl",
+	"height"  : "6 feet",
+	"weight"  : "50 kg",
+	"specialPower" : "can manipulate others",
+	"intelligence" : "convincing power",
+	"strength"       : "can fight",
+	"speed" : "100km/h",
+	"agility":"Very fast",
+	"description":"trouble the world",
+	"story":"Joker"
+}
+````
+
+````
+Response:
+{
+    "id" : "1",
+    "villainName" : "Jokerman",
+	"imagePath" : "imageUrl",
+	"height"  : "6 feet",
+	"weight"  : "50 kg",
+	"specialPower" : "can manipulate others",
+	"intelligence" : "convincing power",
+	"strength"       : "can fight",
+	"speed" : "100km/h",
+	"agility":"Very fast",
+	"description":"trouble the world",
+	"story":"Joker"
+}
+````
