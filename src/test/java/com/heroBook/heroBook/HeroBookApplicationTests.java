@@ -34,9 +34,8 @@ public class HeroBookApplicationTests {
      * @throws Exception
      */
     void initHero() throws Exception {
-        Hero hero = new Hero("ImagePath","Spiderman","6 feet 30 inches","70 kg","Webs & Strings","Fast thinker","Webs & Flexible","200 km/hour","Very fast","Spiderman - Super Hero saves the world","SuperHero saves the city from all the villians");
         mockMvc.perform(MockMvcRequestBuilders.post("/api/hero")
-                .content(objectMapper.writeValueAsString(hero))
+                .content(objectMapper.writeValueAsString(createHeroObject()))
                 .contentType(MediaType.APPLICATION_JSON));
     }
 
@@ -58,7 +57,7 @@ public class HeroBookApplicationTests {
     @Test
     void testAddHero() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/hero")
-                .content(objectMapper.writeValueAsString(new Hero("Spiderman")))
+                .content(objectMapper.writeValueAsString(createHeroObject()))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
@@ -122,5 +121,16 @@ public class HeroBookApplicationTests {
     @AfterEach
     void tearDown() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/cleanuphero")).andExpect(status().isOk());
+    }
+
+    /**
+     * Create the Hero Object
+     * @return
+     */
+    private Hero createHeroObject(){
+        return new Hero("ImagePath","Spiderman","6 feet 30 inches","70 kg",
+                "Webs & Strings","Fast thinker","Webs & Flexible",
+                "200 km/hour","Very fast","Spiderman - Super Hero saves the world",
+                "SuperHero saves the city from all the villians");
     }
 }

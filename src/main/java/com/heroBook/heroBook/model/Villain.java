@@ -8,19 +8,11 @@ import javax.persistence.Id;
 @Entity
 public class Villain extends BaseClass {
 
-    @Id @GeneratedValue(strategy= GenerationType.AUTO) int id;
+    public Villain(String image, String heroName, String height, String weight, String specialPower, String intelligence, String strength, String speed, String agility, String description, String story) {
+        super(image, heroName, height, weight, specialPower, intelligence, strength, speed, agility, description, story);
+    }
+
     private String archRival;
-
-    public Villain() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getArchRival() {
         return archRival;
@@ -29,6 +21,5 @@ public class Villain extends BaseClass {
     public void setArchRival(String archRival) {
         this.archRival = archRival;
     }
-
 
 }

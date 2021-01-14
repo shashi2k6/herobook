@@ -1,10 +1,13 @@
 package com.heroBook.heroBook.model;
 
-import javax.persistence.Entity;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 @MappedSuperclass
 public class BaseClass {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private int id;
 
     private String image;
 
@@ -27,6 +30,28 @@ public class BaseClass {
     private String description;
 
     private String story;
+
+    public BaseClass(String image, String heroName, String height, String weight, String specialPower, String intelligence, String strength, String speed, String agility, String description, String story) {
+        this.image = image;
+        this.heroName = heroName;
+        this.height = height;
+        this.weight = weight;
+        this.specialPower = specialPower;
+        this.intelligence = intelligence;
+        this.strength = strength;
+        this.speed = speed;
+        this.agility = agility;
+        this.description = description;
+        this.story = story;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getImage() {
         return image;

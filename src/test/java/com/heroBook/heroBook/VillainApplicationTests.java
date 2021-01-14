@@ -32,7 +32,7 @@ public class VillainApplicationTests {
 
     void initVillain() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/villain")
-                .content(objectMapper.writeValueAsString(new Villain()))
+                .content(objectMapper.writeValueAsString(createVillianObject()))
                 .contentType(MediaType.APPLICATION_JSON));
     }
 
@@ -54,7 +54,7 @@ public class VillainApplicationTests {
     @Test
     void testAddVillain() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/villain")
-                .content(objectMapper.writeValueAsString(new Hero("Joker")))
+                .content(objectMapper.writeValueAsString(createVillianObject()))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
@@ -82,4 +82,14 @@ public class VillainApplicationTests {
     }
 
 
+    /**
+     * Create the Villian Object
+     * @return
+     */
+    private Villain createVillianObject(){
+        return new Villain("ImagePath","Spiderman","6 feet 30 inches","70 kg",
+                "Webs & Strings","Fast thinker","Webs & Flexible",
+                "200 km/hour","Very fast","Spiderman - Super Hero saves the world",
+                "SuperHero saves the city from all the villians");
+    }
 }
