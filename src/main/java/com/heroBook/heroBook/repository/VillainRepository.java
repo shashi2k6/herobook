@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface VillainRepository extends JpaRepository<Villain,Integer> {
 
-    public Optional<Villain> findByRealName(String realName);
+    public Optional<Villain> findByName(String realName);
 
 }

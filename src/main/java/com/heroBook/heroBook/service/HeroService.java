@@ -23,7 +23,7 @@ public class HeroService {
     }
 
     public Optional<Hero> getHeroByName(String heroName) {
-        return heroRepository.findByHeroName(heroName);
+        return heroRepository.findByName(heroName);
     }
 
     public void cleanUpDB() {

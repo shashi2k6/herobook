@@ -23,7 +23,7 @@ public class VillainService {
     }
 
     public Optional<Villain> getVillainByName(String villainName) {
-        return villainRepository.findByRealName(villainName);
+        return villainRepository.findByName(villainName);
     }
 
     public void cleanUpDB() {
