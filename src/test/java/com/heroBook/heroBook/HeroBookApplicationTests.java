@@ -87,17 +87,17 @@ public class HeroBookApplicationTests {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/heroByName").param("heroName", "Andrew Garfield"))
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.image").value("ImageName"));
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.heroName").value("Spiderman"))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.height").value("6 feet 30 inches"))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.weight").value("70 kg"))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.specialPower").value("Webs & Strings"))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.intelligence").value("Fast thinker"))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.strength").value("Webs & Flexible"))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.speed").value("200 km/hour"))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.agility").value("Very fast"))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.description").value("Spiderman - Super Hero saves the world"))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.story").value("SuperHero saves the city from all the villians"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.image").value("ImageName"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.heroName").value("Spiderman"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.height").value("6 feet 30 inches"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.weight").value("70 kg"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.specialPower").value("Webs & Strings"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.intelligence").value("Fast thinker"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.strength").value("Webs & Flexible"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.speed").value("200 km/hour"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.agility").value("Very fast"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("Spiderman - Super Hero saves the world"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.story").value("SuperHero saves the city from all the villians"));
     }
 
 
