@@ -21,7 +21,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
 @SpringBootTest
-@Transactional
 public class VillainApplicationTests {
 
     @Autowired
@@ -37,7 +36,31 @@ public class VillainApplicationTests {
     }
 
     /**
-     * Test to get all the heroes.
+     * Test to check if villain is empty.
+     * @throws Exception
+     */
+    @Test
+    void testToGetEmptyVillain() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/villain"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.*",hasSize(0)));
+    }
+
+    /**
+     * Test to add a Villain.
+     * @throws Exception
+     */
+    @Test
+    void testAddVillain() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/villain")
+                .content(objectMapper.writeValueAsString(new Hero("Joker")))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
+    }
+
+    /**
+     * Test to get all the villains.
      * @throws Exception
      */
     @Test
@@ -47,7 +70,6 @@ public class VillainApplicationTests {
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.*", hasSize(1)));
-
     }
 
 

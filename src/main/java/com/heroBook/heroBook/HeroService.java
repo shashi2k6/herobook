@@ -9,7 +9,7 @@ import java.util.List;
 public class HeroService {
 
     @Autowired
-    private GCRepository heroRepository;
+    private HeroRepository heroRepository;
 
     public List<Hero> getAllHeroes(){
         return heroRepository.findAll();

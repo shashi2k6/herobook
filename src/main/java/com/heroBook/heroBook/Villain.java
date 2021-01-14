@@ -30,6 +30,8 @@ public class Villain {
 
     private String image;
 
+    private String realName;
+
     private String heroName;
 
     private String height;
@@ -53,8 +55,8 @@ public class Villain {
     public Villain() {
     }
 
-    public Villain(String heroName) {
-        this.heroName = heroName;
+    public Villain(String realName) {
+        this.realName = realName;
     }
 
     public String getImage() {
@@ -143,5 +145,13 @@ public class Villain {
 
     public void setStory(String story) {
         this.story = story;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 }
