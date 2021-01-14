@@ -88,7 +88,7 @@ public class HeroBookApplicationTests {
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.image").value("ImageName"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.heroName").value("Spiderman"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.heroName").value("Andrew Garfield"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.height").value("6 feet 30 inches"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.weight").value("70 kg"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.specialPower").value("Webs & Strings"))
