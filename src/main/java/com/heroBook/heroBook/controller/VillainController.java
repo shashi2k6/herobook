@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class VillainController {
@@ -27,7 +28,7 @@ public class VillainController {
 
     @GetMapping("/api/villainByName")
     public ResponseEntity getVillainByName(@RequestParam String villainName) throws Exception {
-        Villain villain = villainService.getVillainByName(villainName);
+        Optional<Villain> villain = villainService.getVillainByName(villainName);
         if(villain!=null)
             return new ResponseEntity(villain, HttpStatus.OK);
         else

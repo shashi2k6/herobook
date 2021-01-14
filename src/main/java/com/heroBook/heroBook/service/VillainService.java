@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VillainService {
@@ -21,7 +22,7 @@ public class VillainService {
         return villainRepository.save(villain);
     }
 
-    public Villain getVillainByName(String villainName) {
+    public Optional<Villain> getVillainByName(String villainName) {
         return villainRepository.findByRealName(villainName);
     }
 
