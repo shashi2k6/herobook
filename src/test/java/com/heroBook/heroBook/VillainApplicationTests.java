@@ -1,6 +1,7 @@
 package com.heroBook.heroBook;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -70,6 +71,14 @@ public class VillainApplicationTests {
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.*", hasSize(1)));
+    }
+
+    /**
+     * To clean up all the datasource
+     */
+    @AfterEach
+    void tearDown() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/cleanupvillian")).andExpect(status().isOk());
     }
 
 

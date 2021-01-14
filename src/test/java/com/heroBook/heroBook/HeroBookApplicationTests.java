@@ -120,6 +120,6 @@ public class HeroBookApplicationTests {
      */
     @AfterEach
     void tearDown() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/cleanup")).andExpect(status().isOk());
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/cleanuphero")).andExpect(status().isOk());
     }
 }

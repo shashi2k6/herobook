@@ -32,7 +32,7 @@ public class VillainController {
             return new ResponseEntity("Villain doesn't exist", HttpStatus.OK);
     }
 
-    @DeleteMapping("/api/cleanup")
+    @DeleteMapping("/api/cleanuphero")
     public void cleanUpDB(){
         villainService.cleanUpDB();
     }
