@@ -47,6 +47,7 @@ public class HeroBookApplicationTests {
     void testToGetEmptyHero() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/hero"))
                 .andExpect(status().isOk())
+                .andDo(print())
                 .andExpect(jsonPath("$.*",hasSize(0)));
     }
 
