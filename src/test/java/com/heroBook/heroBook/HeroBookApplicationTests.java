@@ -29,6 +29,8 @@ public class HeroBookApplicationTests {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+
     /**
      * To create the dummy hero object for the testing purpose.
      * @throws Exception
@@ -128,7 +130,7 @@ public class HeroBookApplicationTests {
      * @return
      */
     private Hero createHeroObject(){
-        return new Hero("ImagePath","Spiderman","6 feet 30 inches","70 kg",
+        return new Hero("Imagename","SpiderMan","Andrew Garfield","6 feet 30 inches","70 kg",
                 "Webs & Strings","Fast thinker","Webs & Flexible",
                 "200 km/hour","Very fast","Spiderman - Super Hero saves the world",
                 "SuperHero saves the city from all the villians");

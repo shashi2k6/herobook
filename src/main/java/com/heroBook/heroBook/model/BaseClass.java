@@ -11,6 +11,8 @@ public class BaseClass {
 
     private String image;
 
+    private String realName;
+
     private String heroName;
 
     private String height;
@@ -31,8 +33,9 @@ public class BaseClass {
 
     private String story;
 
-    public BaseClass(String image, String heroName, String height, String weight, String specialPower, String intelligence, String strength, String speed, String agility, String description, String story) {
+    public BaseClass(String image, String realName, String heroName, String height, String weight, String specialPower, String intelligence, String strength, String speed, String agility, String description, String story) {
         this.image = image;
+        this.realName = realName;
         this.heroName = heroName;
         this.height = height;
         this.weight = weight;

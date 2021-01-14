@@ -87,7 +87,7 @@ public class VillainApplicationTests {
      * @return
      */
     private Villain createVillianObject(){
-        return new Villain("ImagePath","Spiderman","6 feet 30 inches","70 kg",
+        return new Villain("archRival","ImageName","Villan","Spiderman","6 feet 30 inches","70 kg",
                 "Webs & Strings","Fast thinker","Webs & Flexible",
                 "200 km/hour","Very fast","Spiderman - Super Hero saves the world",
                 "SuperHero saves the city from all the villians");
