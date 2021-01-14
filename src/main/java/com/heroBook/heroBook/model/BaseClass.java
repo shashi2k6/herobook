@@ -48,6 +48,10 @@ public class BaseClass {
         this.story = story;
     }
 
+    public BaseClass() {
+
+    }
+
     public int getId() {
         return id;
     }

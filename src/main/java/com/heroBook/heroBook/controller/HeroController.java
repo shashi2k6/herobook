@@ -34,7 +34,7 @@ public class HeroController {
             return new ResponseEntity("Hero doesn't exist", HttpStatus.OK);
     }
 
-    @DeleteMapping("/api/cleanup")
+    @DeleteMapping("/api/cleanuphero")
     public void cleanUpDB(){
          heroService.cleanUpDB();
     }

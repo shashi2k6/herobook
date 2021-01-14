@@ -13,6 +13,9 @@ public class Villain extends BaseClass {
         this.archRival =archRival;
     }
 
+    public Villain() {
+    }
+
     private String archRival;
 
     public String getArchRival() {
