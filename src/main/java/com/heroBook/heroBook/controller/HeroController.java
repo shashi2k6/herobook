@@ -1,5 +1,7 @@
-package com.heroBook.heroBook;
+package com.heroBook.heroBook.controller;
 
+import com.heroBook.heroBook.model.Hero;
+import com.heroBook.heroBook.service.HeroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +11,6 @@ import java.util.List;
 
 @RestController
 public class HeroController {
-
 
     @Autowired
     private HeroService heroService;

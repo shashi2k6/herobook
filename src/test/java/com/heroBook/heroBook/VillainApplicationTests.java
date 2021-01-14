@@ -1,6 +1,8 @@
 package com.heroBook.heroBook;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.heroBook.heroBook.model.Hero;
+import com.heroBook.heroBook.model.Villain;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import javax.transaction.Transactional;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -32,7 +32,7 @@ public class VillainApplicationTests {
 
     void initVillain() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/villain")
-                .content(objectMapper.writeValueAsString(new Villain("Joker")))
+                .content(objectMapper.writeValueAsString(new Villain()))
                 .contentType(MediaType.APPLICATION_JSON));
     }
 

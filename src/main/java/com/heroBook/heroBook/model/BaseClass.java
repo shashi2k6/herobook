@@ -1,5 +1,9 @@
-package com.heroBook.heroBook;
+package com.heroBook.heroBook.model;
 
+import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class BaseClass {
 
     private String image;

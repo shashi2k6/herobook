@@ -1,5 +1,7 @@
-package com.heroBook.heroBook;
+package com.heroBook.heroBook.service;
 
+import com.heroBook.heroBook.model.Villain;
+import com.heroBook.heroBook.repository.VillainRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

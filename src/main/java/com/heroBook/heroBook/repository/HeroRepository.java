@@ -1,9 +1,11 @@
-package com.heroBook.heroBook;
+package com.heroBook.heroBook.repository;
 
+import com.heroBook.heroBook.model.Hero;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface HeroRepository extends JpaRepository<Hero,Integer> {
+
     public Hero findByHeroName(String heroName);
 }
