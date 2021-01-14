@@ -147,4 +147,23 @@ public class BaseClass {
     public void setStory(String story) {
         this.story = story;
     }
+
+    @Override
+    public String toString() {
+        return "BaseClass{" +
+                "id=" + id +
+                ", image='" + image + '\'' +
+                ", realName='" + realName + '\'' +
+                ", heroName='" + heroName + '\'' +
+                ", height='" + height + '\'' +
+                ", weight='" + weight + '\'' +
+                ", specialPower='" + specialPower + '\'' +
+                ", intelligence='" + intelligence + '\'' +
+                ", strength='" + strength + '\'' +
+                ", speed='" + speed + '\'' +
+                ", agility='" + agility + '\'' +
+                ", description='" + description + '\'' +
+                ", story='" + story + '\'' +
+                '}';
+    }
 }
