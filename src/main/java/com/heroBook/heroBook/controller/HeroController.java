@@ -28,8 +28,8 @@ public class HeroController {
 
     @GetMapping("/api/heroByName")
     public ResponseEntity getHeroByName(@RequestParam String heroName) throws Exception {
-        Optional<Hero> hero = heroService.getHeroByName(heroName);
-        if(hero.isPresent())
+        Hero hero = heroService.getHeroByName(heroName);
+        if(hero!=null)
             return new ResponseEntity(hero, HttpStatus.OK);
         else
             return new ResponseEntity("Hero doesn't exist", HttpStatus.OK);

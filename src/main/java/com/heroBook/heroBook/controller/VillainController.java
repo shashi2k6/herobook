@@ -28,7 +28,7 @@ public class VillainController {
 
     @GetMapping("/api/villainByName")
     public ResponseEntity getVillainByName(@RequestParam String villainName) throws Exception {
-        Optional<Villain> villain = villainService.getVillainByName(villainName);
+        Villain villain = villainService.getVillainByName(villainName);
         if(villain!=null)
             return new ResponseEntity(villain, HttpStatus.OK);
         else

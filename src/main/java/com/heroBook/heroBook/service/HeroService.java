@@ -22,8 +22,8 @@ public class HeroService {
         return heroRepository.save(hero);
     }
 
-    public Optional<Hero> getHeroByName(String heroName) {
-        return heroRepository.findByName(heroName);
+    public Hero getHeroByName(String heroName) {
+        return heroRepository.findByHeroName(heroName);
     }
 
     public void cleanUpDB() {

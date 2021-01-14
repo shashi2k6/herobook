@@ -22,8 +22,8 @@ public class VillainService {
         return villainRepository.save(villain);
     }
 
-    public Optional<Villain> getVillainByName(String villainName) {
-        return villainRepository.findByName(villainName);
+    public Villain getVillainByName(String villainName) {
+        return villainRepository.findByHeroName(villainName);
     }
 
     public void cleanUpDB() {
