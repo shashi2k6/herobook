@@ -1,5 +1,8 @@
 package com.heroBook.heroBook.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.heroBook.heroBook.model.FavouriteHero;
 import com.heroBook.heroBook.model.User;
 import com.heroBook.heroBook.service.UserService;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -22,19 +26,30 @@ public class UserController {
         return createUserObject();
     }
 
+    @Autowired
+    ObjectMapper objectMapper;
+
+
     @PostMapping("/api/addfavourite")
-    public User addUser(@RequestBody User user){
-        User userR = userService.addFavourite(user);
+    public User addUser(@RequestBody String json) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(User.class, new UserDeserializer());
+        mapper.registerModule(module);
+
+        User u = mapper.readValue(json,User.class);
+        User userR = userService.addFavourite(u);
         return userR;
     }
 
+
    private User createUserObject(){
         List<FavouriteHero> favList = new ArrayList<FavouriteHero>();
-        User user = new User();
+        User user = new User("","");
         user.setName("Fan");
         user.setRole("A registered user who can create Favorites lists of heroes.");
-        //favList.add(new FavouriteHero("Spidername"));
-        //user.setFavouriteList(favList);
+        favList.add(new FavouriteHero("Spidername"));
+        user.setFavouriteList(favList);
         return user;
     }
 

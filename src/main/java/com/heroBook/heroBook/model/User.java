@@ -14,8 +14,22 @@ public class User {
     private String name;
     private String role;
 
+    public User() {
+    }
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<FavouriteHero> favouriteList;
+
+    public User(String name, String role) {
+        this.name = name;
+        this.role = role;
+    }
+
+    public User(String name, String role, List<FavouriteHero> favouriteList) {
+        this.name = name;
+        this.role = role;
+        this.favouriteList = favouriteList;
+    }
 
     public List<FavouriteHero> getFavouriteList() {
         return favouriteList;

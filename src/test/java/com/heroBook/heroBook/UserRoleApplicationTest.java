@@ -1,6 +1,7 @@
 package com.heroBook.heroBook;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.heroBook.heroBook.model.FavouriteHero;
 import com.heroBook.heroBook.model.Hero;
@@ -64,6 +65,7 @@ public class UserRoleApplicationTest {
      * To create the dummy hero object for the testing purpose.
      * @throws Exception
      */
+    @Test
     void initUser(User user) throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/addfavourite")
                 .content(objectMapper.writeValueAsString(user))
@@ -75,16 +77,20 @@ public class UserRoleApplicationTest {
      * @return
      */
     private User createUserObject(){
-        User user = new User();
+        User user = new User("","");
         user.setName("Fan");
         user.setRole("A registered user who can create Favorites lists of heroes.");
         return user;
     }
 
-    private User addFavourite(User user){
+    private User addFavourite(User user) throws JsonProcessingException {
+
         List<FavouriteHero> favList = new ArrayList<FavouriteHero>();
         favList.add(new FavouriteHero("Spidername"));
         user.setFavouriteList(favList);
+
+        System.out.println(objectMapper.writeValueAsString(user));
+
         return user;
     }
 }
