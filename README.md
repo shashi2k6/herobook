@@ -1,4 +1,4 @@
-###**Herobook**
+# `Herobook`
 
 GC publishing wants to develop a new application for fans to browse all the heroes 
 and villains from the comics.
