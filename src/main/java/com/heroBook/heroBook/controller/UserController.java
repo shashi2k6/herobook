@@ -21,36 +21,37 @@ public class UserController {
 
     @GetMapping("/api/userfavourlist")
     public User getUserFavouriteList(@RequestParam String username){
-        User us  = userService.getFavouriteListByUserName(username);
-        return us ;
-        //return createUserObject();
+        return userService.getFavouriteListByUserName(username);
     }
-
-    @Autowired
-    ObjectMapper objectMapper;
-
 
     @PostMapping("/api/addfavourite")
     public User addUser(@RequestBody String json) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        SimpleModule module = new SimpleModule();
-        module.addDeserializer(User.class, new UserDeserializer());
-        mapper.registerModule(module);
-
-        User u = mapper.readValue(json,User.class);
-        User userR = userService.addFavourite(u);
-        return userR;
+        User userObj = getObjectMapper().readValue(json,User.class);
+        User userReturn = userService.addFavourite(userObj);
+        return userReturn;
     }
 
-
+    /**
+     * Create the dummy user Object for testing
+     * @return
+     */
    private User createUserObject(){
         List<FavouriteHero> favList = new ArrayList<FavouriteHero>();
-        User user = new User("","");
-        user.setName("Fan");
-        user.setRole("A registered user who can create Favorites lists of heroes.");
+        User user = new User("Fan","A registered user who can create Favorites lists of heroes.");
         favList.add(new FavouriteHero("Spidername"));
         user.setFavouriteList(favList);
         return user;
     }
 
+    /**
+     * Customized the json deserializer user object.
+     * @return
+     */
+    private ObjectMapper getObjectMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(User.class, new UserDeserializer());
+        mapper.registerModule(module);
+        return mapper;
+    }
 }

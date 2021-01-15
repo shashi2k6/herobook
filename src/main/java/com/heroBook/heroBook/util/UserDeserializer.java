@@ -25,23 +25,19 @@ public class UserDeserializer extends StdDeserializer<User> {
     }
 
     @Override
-    public User deserialize(JsonParser jp, DeserializationContext ctxt)
-            throws IOException, JsonProcessingException {
+    public User deserialize(JsonParser jp, DeserializationContext ctxt)throws IOException, JsonProcessingException {
         JsonNode node = jp.getCodec().readTree(jp);
-        int id = (Integer) ((IntNode) node.get("id")).numberValue();
-        String name = node.get("name").asText();
-        String role = node.get("role").asText();
-        List l = new ArrayList<FavouriteHero>();
+        //String name = node.get("name").asText();
+        //String role = node.get("role").asText();
+        List favHeroList = new ArrayList<FavouriteHero>();
         if (!node.get("favouriteList").isEmpty()){
-            ArrayNode fnodeList = (ArrayNode)node.get("favouriteList");
-
-
-            if (fnodeList.isArray()) {
-                for (JsonNode jsonNode : fnodeList) {
-                    l.add(new FavouriteHero(jsonNode.get("name").asText()));
+            ArrayNode fNodeList = (ArrayNode)node.get("favouriteList");
+            if (fNodeList.isArray()) {
+                for (JsonNode jsonNode : fNodeList) {
+                    favHeroList.add(new FavouriteHero(jsonNode.get("name").asText()));
                 }
             }
         }
-        return new User(name, role, l);
+        return new User(node.get("name").asText(), node.get("role").asText(), favHeroList);
     }
 }

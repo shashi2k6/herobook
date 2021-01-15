@@ -37,7 +37,6 @@ public class UserRoleApplicationTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-
     @Test
     void test_emptyFavouriteList() throws Exception{
         initUser(createUserObject());
@@ -77,21 +76,20 @@ public class UserRoleApplicationTest {
      * @return
      */
     private User createUserObject(){
-        User user = new User("","");
-        user.setName("Fan");
-        user.setRole("A registered user who can create Favorites lists of heroes.");
-        return user;
+        return new User("Fan","A registered user who can create Favorites lists of heroes.");
     }
 
+    /**
+     * Add the Favourite list to the user
+     * @param user
+     * @return
+     * @throws JsonProcessingException
+     */
     private User addFavourite(User user) throws JsonProcessingException {
-
         List<FavouriteHero> favList = new ArrayList<FavouriteHero>();
         favList.add(new FavouriteHero("Spidername"));
-        favList.add(new FavouriteHero("Batman"));
+        //favList.add(new FavouriteHero("Batman"));
         user.setFavouriteList(favList);
-
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>> "+objectMapper.writeValueAsString(user));
-
         return user;
     }
 }
