@@ -31,11 +31,15 @@ public class UserDeserializer extends StdDeserializer<User> {
         int id = (Integer) ((IntNode) node.get("id")).numberValue();
         String name = node.get("name").asText();
         String role = node.get("role").asText();
-        ArrayNode fnodeList = (ArrayNode) node.get("favouriteList");
         List l = new ArrayList<FavouriteHero>();
-        if(fnodeList.isArray()) {
-            for(JsonNode jsonNode : fnodeList) {
-                l.add(new FavouriteHero(jsonNode.get("name").asText()));
+        if (!node.get("favouriteList").isEmpty()){
+            ArrayNode fnodeList = (ArrayNode)node.get("favouriteList");
+
+
+            if (fnodeList.isArray()) {
+                for (JsonNode jsonNode : fnodeList) {
+                    l.add(new FavouriteHero(jsonNode.get("name").asText()));
+                }
             }
         }
         return new User(name, role, l);
