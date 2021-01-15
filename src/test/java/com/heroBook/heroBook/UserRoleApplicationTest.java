@@ -28,6 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
 @SpringBootTest
+@Transactional
 public class UserRoleApplicationTest {
     
     @Autowired
@@ -43,7 +44,7 @@ public class UserRoleApplicationTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/userfavourlist").param("username","Fan"))
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(jsonPath("$.favouriteList.[*]").isEmpty());
+                .andExpect(jsonPath("$.favouriteList").isEmpty());
 
     }
 
@@ -65,7 +66,6 @@ public class UserRoleApplicationTest {
      * To create the dummy hero object for the testing purpose.
      * @throws Exception
      */
-    @Test
     void initUser(User user) throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/addfavourite")
                 .content(objectMapper.writeValueAsString(user))

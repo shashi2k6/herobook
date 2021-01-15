@@ -31,10 +31,11 @@ public class UserDeserializer extends StdDeserializer<User> {
         String name = node.get("name").asText();
         String role = node.get("role").asText();
         JsonNode fnode = node.findValue("favouriteList");
-        JsonNode fdnode = fnode.get(0);
-
         List l = new ArrayList<FavouriteHero>();
-        l.add(new FavouriteHero(fdnode.get("name").asText()));
-        return new User(name,role,l);
+        JsonNode fdnode = fnode.get(0);
+        if (null != fdnode) {
+            l.add(new FavouriteHero(fdnode.get("name").asText()));
+        }
+        return new User(name, role, l);
     }
 }

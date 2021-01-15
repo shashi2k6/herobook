@@ -22,8 +22,8 @@ public class UserController {
     @GetMapping("/api/userfavourlist")
     public User getUserFavouriteList(@RequestParam String username){
         User us  = userService.getFavouriteListByUserName(username);
-        //return us ;
-        return createUserObject();
+        return us ;
+        //return createUserObject();
     }
 
     @Autowired
