@@ -37,6 +37,10 @@ public class UserRoleApplicationTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    /**
+     * Test to check the list empty or not.
+     * @throws Exception
+     */
     @Test
     void test_emptyFavouriteList() throws Exception{
         initUser(createUserObject());
@@ -48,7 +52,7 @@ public class UserRoleApplicationTest {
     }
 
     /**
-     * Test to get all the heroes.
+     * Test to get all the favourite list.
      * @throws Exception
      */
     @Test
@@ -62,7 +66,21 @@ public class UserRoleApplicationTest {
     }
 
     /**
-     * To create the dummy hero object for the testing purpose.
+     * Test to remove my favourite hero from list.
+     * @throws Exception
+     */
+    @Test
+    void test_removeFavouriteList() throws Exception {
+        initUser(addFavourite(createUserObject()));
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/removefavourite").param("name","Batman"))
+                //.andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.favouriteList.[*]",hasSize(1)));
+
+    }
+
+    /**
+     * To create the dummy user object for the testing purpose.
      * @throws Exception
      */
     void initUser(User user) throws Exception {

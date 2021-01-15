@@ -21,4 +21,7 @@ public class UserService {
     public User addFavourite(User user) {
         return userRepository.save(user);
     }
+
+    public void cleanUpDB() { userRepository.deleteAll(); }
+
 }

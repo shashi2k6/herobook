@@ -25,10 +25,25 @@ public class UserController {
     }
 
     @PostMapping("/api/addfavourite")
-    public User addUser(@RequestBody String json) throws JsonProcessingException {
+    public User addUserAndFavourite(@RequestBody String json) throws JsonProcessingException {
         User userObj = getObjectMapper().readValue(json,User.class);
         User userReturn = userService.addFavourite(userObj);
         return userReturn;
+    }
+
+    @PostMapping("/api/removefavourite")
+    public User removeUserFavourite(@RequestBody String json) throws JsonProcessingException {
+        User userObj = getObjectMapper().readValue(json,User.class);
+        User userReturn = userService.addFavourite(userObj);
+        return userReturn;
+    }
+
+    /**
+     * Clean up the DB
+     */
+    @DeleteMapping("/api/cleanupuser")
+    public void cleanUpDB(){
+        userService.cleanUpDB();
     }
 
     /**
