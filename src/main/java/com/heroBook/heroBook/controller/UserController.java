@@ -6,12 +6,12 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.heroBook.heroBook.model.FavouriteHero;
 import com.heroBook.heroBook.model.User;
 import com.heroBook.heroBook.service.UserService;
+import com.heroBook.heroBook.util.UserDeserializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class UserController {

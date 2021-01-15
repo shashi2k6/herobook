@@ -1,4 +1,4 @@
-package com.heroBook.heroBook.controller;
+package com.heroBook.heroBook.util;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
