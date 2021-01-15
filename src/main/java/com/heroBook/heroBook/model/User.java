@@ -5,19 +5,23 @@ import org.hibernate.annotations.Generated;
 import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
     private String name;
     private String role;
 
-    private List<String> favouriteList;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<FavouriteHero> favouriteList;
 
-    public List<String> getFavouriteList() {
+    public List<FavouriteHero> getFavouriteList() {
         return favouriteList;
     }
 
-    public void setFavouriteList(List<String> favouriteList) {
+    public void setFavouriteList(List<FavouriteHero> favouriteList) {
         this.favouriteList = favouriteList;
     }
 
@@ -45,12 +49,5 @@ public class User {
         this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", role='" + role + '\'' +
-                '}';
-    }
+
 }

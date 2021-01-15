@@ -1,10 +1,10 @@
 package com.heroBook.heroBook.controller;
 
+import com.heroBook.heroBook.model.FavouriteHero;
 import com.heroBook.heroBook.model.User;
-import com.heroBook.heroBook.service.UserServie;
+import com.heroBook.heroBook.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +13,28 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserServie userServie;
+    private UserService userService;
 
-    @GetMapping("/api/user")
-    public User getUserFavouriteList(){
+    @GetMapping("/api/userfavourlist")
+    public User getUserFavouriteList(@RequestParam String username){
+        User us  = userService.getFavouriteListByUserName(username);
+        //return us ;
+        return createUserObject();
+    }
+
+    @PostMapping("/api/addfavourite")
+    public User addUser(@RequestBody User user){
+        User userR = userService.addFavourite(user);
+        return userR;
+    }
+
+   private User createUserObject(){
+        List<FavouriteHero> favList = new ArrayList<FavouriteHero>();
         User user = new User();
-        List favList = new ArrayList<String>();
-        favList.add("Spiderman");
-       // user.setFavouriteList(favList);
+        user.setName("Fan");
+        user.setRole("A registered user who can create Favorites lists of heroes.");
+        //favList.add(new FavouriteHero("Spidername"));
+        //user.setFavouriteList(favList);
         return user;
     }
 
