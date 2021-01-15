@@ -69,7 +69,7 @@ public class UserRoleApplicationTest {
      * Test to remove my favourite hero from list.
      * @throws Exception
      */
-    @Test
+    //@Test
     void test_removeFavouriteList() throws Exception {
         initUser(addFavourite(createUserObject()));
         mockMvc.perform(MockMvcRequestBuilders.get("/api/removefavourite").param("name","Batman"))
