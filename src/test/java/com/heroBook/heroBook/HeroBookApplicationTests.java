@@ -114,7 +114,6 @@ public class HeroBookApplicationTests {
                 .andExpect(MockMvcResultMatchers.jsonPath("$").value("Hero doesn't exist"));
     }
 
-
     /**
      * To clean up all the datasource
      */

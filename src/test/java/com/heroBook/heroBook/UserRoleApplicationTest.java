@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.heroBook.heroBook.model.FavouriteHero;
 import com.heroBook.heroBook.model.Hero;
 import com.heroBook.heroBook.model.User;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -28,7 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
 @SpringBootTest
-@Transactional
 public class UserRoleApplicationTest {
     
     @Autowired
@@ -77,6 +77,15 @@ public class UserRoleApplicationTest {
                 .andDo(print())
                 .andExpect(jsonPath("$.favouriteList.[*]",hasSize(1)));
 
+    }
+
+
+    /**
+     * To clean up all the datasource
+     */
+    @AfterEach
+    void tearDown() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/cleanupuser")).andExpect(status().isOk());
     }
 
     /**
