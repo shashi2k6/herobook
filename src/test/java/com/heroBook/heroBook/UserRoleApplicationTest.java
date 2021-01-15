@@ -87,9 +87,10 @@ public class UserRoleApplicationTest {
 
         List<FavouriteHero> favList = new ArrayList<FavouriteHero>();
         favList.add(new FavouriteHero("Spidername"));
+        favList.add(new FavouriteHero("Batman"));
         user.setFavouriteList(favList);
 
-        System.out.println(objectMapper.writeValueAsString(user));
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>> "+objectMapper.writeValueAsString(user));
 
         return user;
     }

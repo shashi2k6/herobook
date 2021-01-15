@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.IntNode;
 import com.heroBook.heroBook.model.FavouriteHero;
 import com.heroBook.heroBook.model.User;
@@ -30,11 +31,12 @@ public class UserDeserializer extends StdDeserializer<User> {
         int id = (Integer) ((IntNode) node.get("id")).numberValue();
         String name = node.get("name").asText();
         String role = node.get("role").asText();
-        JsonNode fnode = node.findValue("favouriteList");
+        ArrayNode fnodeList = (ArrayNode) node.get("favouriteList");
         List l = new ArrayList<FavouriteHero>();
-        JsonNode fdnode = fnode.get(0);
-        if (null != fdnode) {
-            l.add(new FavouriteHero(fdnode.get("name").asText()));
+        if(fnodeList.isArray()) {
+            for(JsonNode jsonNode : fnodeList) {
+                l.add(new FavouriteHero(jsonNode.get("name").asText()));
+            }
         }
         return new User(name, role, l);
     }
