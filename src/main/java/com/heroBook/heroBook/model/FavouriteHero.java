@@ -1,18 +1,19 @@
 package com.heroBook.heroBook.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class FavouriteHero {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "favourite_list")
+    @SequenceGenerator(name = "favourite_list", sequenceName = "favourite_list", allocationSize = 100,initialValue = 1)
     private int id;
 
     private String name;
+
+    public FavouriteHero() {
+    }
 
     public FavouriteHero(String name) {
         this.name = name;

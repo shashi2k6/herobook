@@ -61,7 +61,7 @@ public class UserRoleApplicationTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/userfavourlist").param("username","Fan"))
                 //.andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(jsonPath("$.favouriteList.[*]",hasSize(1)));
+                .andExpect(jsonPath("$.favouriteList[*]",hasSize(1)));
 
     }
 
